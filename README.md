@@ -10,6 +10,7 @@ This project consists of a **React frontend** styled with **Tailwind CSS** and a
 - Browse properties for sale or rent
 - Post new property listings
 - Manage property details
+- Admin dashboard for manage listings
 - Responsive and modern UI with Tailwind CSS
 - Backend APIs powered by Express and Node.js runtime
 
@@ -19,7 +20,7 @@ This project consists of a **React frontend** styled with **Tailwind CSS** and a
 
 - **Frontend:** React 19, Tailwind CSS, Vite (build tool)
 - **Backend:** Node.js, Express
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS 4.1.11
 - **Tooling:** ESLint, Prettier for code quality and formatting
 
 ---
