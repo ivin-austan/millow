@@ -1,12 +1,16 @@
-import "./App.css";
-
-import React from "react";
 import Header from "./Components/Header";
+import HomePage from "./Pages/HomePage";
+import LoginPage from "./Pages/LoginPage";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <Header />
+      <Routes>
+        {/* <Route path='/' element={<Feedpage />} /> */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </div>
   );
 };

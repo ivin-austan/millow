@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
 
 const Header = () => {
@@ -6,13 +7,14 @@ const Header = () => {
       <header className="w-full bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* {millowlogo} */}
             <div className="flex items-center">
               <img src={millowlogo} alt="Zillow" className="h-10 w-auto " />
-              <h5 className="text-indigo-900 font-semibold"> Millow</h5>
+              <h1 className="text-indigo-900 font-semibold text-2xl">
+                {" "}
+                Millow
+              </h1>
             </div>
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8 text-sm font-medium text-gray-700">
+            <nav className="hidden md:flex space-x-8 text-md font-medium text-gray-700">
               <a href="#" className="hover:text-blue-600 transition">
                 Buy
               </a>
@@ -32,10 +34,12 @@ const Header = () => {
 
             <div className="flex items-center space-x-4">
               <button className="hidden md:block px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition">
-                Sign In
+                <Link to="/login" id="login">
+                  Sign In
+                </Link>
               </button>
               <button className="hidden md:block bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
-                Join
+                <Link to="/login?register=true">Join</Link>
               </button>
               <button className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 focus:outline-none">
                 <svg
