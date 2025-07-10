@@ -12,10 +12,8 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    name,
     email,
     password,
-    pic,
     isAdmin,
   });
   if (user) {
@@ -23,6 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       email: user.email,
       isAdmin: user.isAdmin,
+      pic: user.pic,
       token: generateToken(user._id), //check user successfully stored and used for authentication
     });
   } else {

@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
+const userRoutes = require("./Routes/userRoutes");
+
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
@@ -27,8 +29,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(notFound, errorHandler);
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => res.send("API is running"));
+
+app.use(notFound, errorHandler);
 
 app.listen(5000, console.log("server started on port 5000"));

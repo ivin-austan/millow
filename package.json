@@ -1,0 +1,26 @@
+{
+  "name": "millow",
+  "version": "1.0.0",
+  "description": "Millow is a property-related web application for **buying**, **selling**, and managing real estate listings — inspired by Zillow.  \r This project features a **⚛️ React frontend** styled with **🎨 Tailwind CSS**, and a **🟢 Node.js backend** powered by **🚂 Express**.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivin-austan/millow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivin-austan/millow/issues"
+  },
+  "homepage": "https://github.com/ivin-austan/millow#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
