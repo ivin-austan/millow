@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
 
 const Header = () => {
+  const userInfo = localStorage.getItem("userInfo");
+  const userInfoParsed = JSON.parse(userInfo);
+  const userEmail = userInfoParsed?.email;
+
   return (
     <>
       <header className="w-full bg-white shadow-sm sticky top-0 z-50">
@@ -32,7 +36,9 @@ const Header = () => {
               </a>
             </nav>
 
-            <div className="flex items-center space-x-4">
+            <div
+              className={`flex items-center space-x-4 ${userEmail ? "hidden" : ""}`}
+            >
               <button className="hidden md:block px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition">
                 <Link to="/login" id="login">
                   Sign In
