@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
+import UserDropdown from "./UserDropdown";
 
 const Header = () => {
   const userInfo = localStorage.getItem("userInfo");
@@ -15,7 +16,7 @@ const Header = () => {
               <img src={millowlogo} alt="Zillow" className="h-10 w-auto " />
               <h1 className="text-indigo-900 font-semibold text-2xl">
                 {" "}
-                Millow
+                <Link to="/">Millow</Link>
               </h1>
             </div>
             <nav className="hidden md:flex space-x-8 text-md font-medium text-gray-700">
@@ -35,7 +36,6 @@ const Header = () => {
                 Home Loans
               </a>
             </nav>
-
             <div
               className={`flex items-center space-x-4 ${userEmail ? "hidden" : ""}`}
             >
@@ -63,6 +63,7 @@ const Header = () => {
                 </svg>
               </button>
             </div>
+            {userEmail && <UserDropdown />}
           </div>
         </div>
       </header>

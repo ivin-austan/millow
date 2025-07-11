@@ -8,7 +8,6 @@ import HomeTabs from "../Components/Tabs";
 const HomePage = () => {
   return (
     <>
-      <Header />
       <Banner />
       <RecommendationsUnderway />
       <BuyAbilitySection />
