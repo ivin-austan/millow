@@ -106,8 +106,14 @@ export default function AdminWithImageBg() {
 
         {isOpen && (
           <div className=" sticky w-full max-w-xl bg-white rounded-lg shadow-lg border border-gray-300 p-8 z-10">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex justify-between items-center">
               Add New Item
+              <button
+                className="text-gray-500 hover:text-red-600 text-xl font-bold"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                &times;
+              </button>
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-6">

@@ -8,9 +8,9 @@ const {
 const { default: verifyToken } = require("../utils/jwtTokenValidation");
 
 const router = express.Router();
-router.route("/addproperty").post(verifyToken, createProperty);
-router.route("/updateproperty").post(verifyToken, updateproperty);
-router.route("/deleteproperty").delete(deleteProperty);
-router.route("/fetchproperty").get(showProperty);
-
+//protected routes
+router.post("/addproperty", verifyToken, createProperty);
+router.get("/updateproperty", verifyToken, updateproperty);
+router.delete("/deleteproperty", verifyToken, deleteProperty);
+router.get("/fetchproperty", verifyToken, showProperty);
 module.exports = router;

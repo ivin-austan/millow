@@ -10,8 +10,8 @@ const HomePage = () => {
     <>
       <Banner />
       <RecommendationsUnderway />
-      <BuyAbilitySection />
       <HomeTabs />
+      <BuyAbilitySection />
       <Footer />
     </>
   );
