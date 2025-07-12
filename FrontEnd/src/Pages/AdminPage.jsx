@@ -8,6 +8,8 @@ export default function AdminWithImageBg() {
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("");
+  const [name, setName] = useState("");
+
   const [image, setImage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [errormessage, setErromessage] = useState("");
@@ -24,12 +26,7 @@ export default function AdminWithImageBg() {
       };
       await axios.post(
         `${REACT_SERVER_URL}/properties/addproperty`,
-        {
-          type,
-          amount,
-          desc,
-          image,
-        },
+        { name, type, amount, desc, image },
         config
       );
       setErromessage("");
@@ -105,7 +102,7 @@ export default function AdminWithImageBg() {
         </div>
 
         {isOpen && (
-          <div className=" sticky w-full max-w-xl bg-white rounded-lg shadow-lg border border-gray-300 p-8 z-10">
+          <div className="fixed w-full max-w-xl bg-white rounded-lg shadow-lg border border-gray-300 p-8 z-10">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex justify-between items-center">
               Add New Item
               <button
@@ -116,6 +113,21 @@ export default function AdminWithImageBg() {
               </button>
             </h2>
             <form onSubmit={handleSubmit}>
+              <div className="mb-6">
+                <label
+                  className="block text-gray-700 mb-2 font-medium"
+                  htmlFor="propertyTitle"
+                >
+                  Property Name
+                </label>
+                <input
+                  id="propertyTitle"
+                  type="text"
+                  placeholder="Enter property title"
+                  className="border border-gray-300 rounded px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
               <div className="mb-6">
                 <label
                   className="block text-gray-700 mb-2 font-medium"

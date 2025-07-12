@@ -2,9 +2,10 @@ const Property = require("../models/propertyModel.js");
 const generateToken = require("../utils/generateToken");
 
 const createProperty = async (req, res) => {
-  const { image, type, amount, picture, desc } = req.body;
+  const { name, image, type, amount, picture, desc } = req.body;
 
   const Properties = await Property.create({
+    name,
     image,
     type,
     amount,
@@ -15,6 +16,7 @@ const createProperty = async (req, res) => {
   if (Properties) {
     res.status(201).json({
       _id: Properties.id,
+      name: Properties.name,
       image: Properties.image,
       type: Properties.type,
       amount: Properties.amount,
@@ -30,12 +32,13 @@ const createProperty = async (req, res) => {
 const updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
-    const { type, desc, amount } = req.body;
+    const { name, type, desc, amount } = req.body;
 
     const updatedFields = {};
     if (type !== undefined) updatedFields.type = type;
     if (desc !== undefined) updatedFields.desc = desc;
     if (amount !== undefined) updatedFields.amount = amount;
+    if (name !== undefined) updatedFields.name = name;
 
     const validProperty = await Property.findById(id);
     if (!validProperty) {
