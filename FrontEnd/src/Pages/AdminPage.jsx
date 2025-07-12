@@ -171,13 +171,19 @@ export default function AdminWithImageBg() {
                 >
                   Property Type
                 </label>
-                <input
+                <select
                   id="propertyType"
-                  type="text"
-                  placeholder="e.g., Apartment, Villa"
-                  className="border border-gray-300 rounded px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                  className="bg-white border border-gray-200 rounded-xl px-4 py-3 w-full text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition"
                   onChange={(e) => setType(e.target.value)}
-                />
+                  value={type}
+                >
+                  <option value="" disabled>
+                    Select Property Type
+                  </option>
+                  <option value="Rental">Rental</option>
+                  <option value="Sell">Sell</option>
+                  <option value="Buy">Buy</option>
+                </select>
               </div>
 
               <button

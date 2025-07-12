@@ -27,22 +27,50 @@ const createProperty = async (req, res) => {
   }
 };
 
-const updateproperty = async (req, res) => {
-  const { id } = req.params;
+const updateProperty = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { type, desc, amount } = req.body;
 
-  const updatedproperty = await Property.findByIdAndUpdate(
-    id,
-    {
-      isavailable: "false",
-    },
-    { new: true }
-  );
-  res.json(updatedproperty);
+    const updatedFields = {};
+    if (type !== undefined) updatedFields.type = type;
+    if (desc !== undefined) updatedFields.desc = desc;
+    if (amount !== undefined) updatedFields.amount = amount;
+
+    const validProperty = await Property.findById(id);
+    if (!validProperty) {
+      return res
+        .status(404)
+        .json({ message: "Property with this ID not found" });
+    }
+
+    const updatedProperty = await Property.findByIdAndUpdate(
+      id,
+      updatedFields,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProperty) {
+      return res.status(404).json({ message: "Property not updated" });
+    }
+    res.status(200).json(updatedProperty);
+  } catch (error) {
+    console.error("Update failed:", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
 };
+
 const deleteProperty = async (req, res) => {
   const { id } = req.params;
-  await Product.deleteOne({ _id: id });
-  res.status(202).json("Deleted Successfully");
+  try {
+    await Property.deleteOne({ _id: id });
+
+    res.status(202).json("Deleted Successfully");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const showProperty = async (req, res) => {
@@ -70,7 +98,7 @@ const showProperty = async (req, res) => {
 
 module.exports = {
   createProperty,
-  updateproperty,
+  updateProperty,
   deleteProperty,
   showProperty,
 };
