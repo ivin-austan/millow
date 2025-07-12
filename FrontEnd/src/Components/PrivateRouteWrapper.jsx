@@ -1,8 +1,15 @@
 import { Navigate } from "react-router-dom";
 
-const PrivateRouteWrapper = ({ children }) => {
+const PrivateRouteWrapper = ({ children, requireAdmin = false }) => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  return userInfo ? children : <Navigate to="/login" />;
+  if (!userInfo) {
+    return <Navigate to="/login" />;
+  }
+
+  if (requireAdmin && !userInfo.isAdmin) {
+    return <Navigate to="/unauthorized" />;
+  }
+  return children;
 };
 
 export default PrivateRouteWrapper;

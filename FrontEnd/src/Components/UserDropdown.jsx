@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaRegUser, FaChevronDown } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Alerts from "./Alerts";
 
 const UserDropdown = () => {
@@ -12,13 +12,17 @@ const UserDropdown = () => {
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const userEmail = userInfo?.email;
+  const isAdmin = userInfo?.isAdmin;
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
   const toggleFavourites = () => setShowFavourites((prev) => !prev);
 
   const handleLogout = () => {
     setShowConfirm(true);
+  };
+  const handleConfirmLogout = () => {
     localStorage.removeItem("userInfo");
+    setShowConfirm(false);
     navigate("/login");
   };
 
@@ -68,7 +72,11 @@ const UserDropdown = () => {
               <p>🏢 Office in Sharjah</p>
             </div>
           )}
-
+          <span className={`${!isAdmin ? "hidden" : ""}`}>
+            <button className="w-full text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-red-50 transition cursor-pointer">
+              <Link to="/admin">Admin Dashboard </Link>
+            </button>
+          </span>
           <div className="border-t border-gray-100" />
           <button
             onClick={handleLogout}
@@ -83,7 +91,7 @@ const UserDropdown = () => {
         <Alerts
           message="Are you sure you want to log out?"
           onCancel={() => setShowConfirm(false)}
-          onConfirm={() => handleLogout()}
+          onConfirm={handleConfirmLogout}
         />
       )}
     </div>

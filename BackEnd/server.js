@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const userRoutes = require("./Routes/userRoutes");
+const propertyRoutes = require("./Routes/propertyRoutes");
 
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
@@ -30,6 +31,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
+app.use("/properties", propertyRoutes);
 
 app.get("/", (req, res) => res.send("API is running"));
 
