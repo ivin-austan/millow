@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
 import UserDropdown from "./UserDropdown";
 import options from "../assets/realestatetypes.json";
+import useUserInfo from "../CustomHooks/useUserInfo";
 
 const Header = () => {
-  const userInfo = localStorage.getItem("userInfo");
-  const userInfoParsed = JSON.parse(userInfo);
-  const userEmail = userInfoParsed?.email;
+  const userInfo = useUserInfo();
 
   return (
     <>
@@ -28,7 +27,7 @@ const Header = () => {
               ))}
             </nav>
             <div
-              className={`flex items-center space-x-4 ${userEmail ? "hidden" : ""}`}
+              className={`flex items-center space-x-4 ${userInfo?.email ? "hidden" : ""}`}
             >
               <button className="hidden md:block px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition">
                 <Link to="/login" id="login">
@@ -54,7 +53,7 @@ const Header = () => {
                 </svg>
               </button>
             </div>
-            {userEmail && <UserDropdown />}
+            {userInfo?.email && <UserDropdown />}
           </div>
         </div>
       </header>

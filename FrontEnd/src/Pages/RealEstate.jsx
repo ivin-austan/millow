@@ -3,11 +3,12 @@ import axios from "axios";
 import { REACT_SERVER_URL } from "../../config/ENV";
 import Property from "../Components/Property";
 import { useSearchParams } from "react-router-dom";
+import useUserInfo from "../CustomHooks/useUserInfo";
 
 const RealEstate = () => {
   const [properties, setProperties] = useState([]);
   const [updated, setUpdated] = useState(false);
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = useUserInfo();
 
   const [searchParams] = useSearchParams();
 

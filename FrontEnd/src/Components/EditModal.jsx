@@ -176,13 +176,13 @@ const EditModal = ({ selectedProperty, setEditmodal, setUpdated }) => {
           <div className="mt-6 flex justify-end space-x-2">
             <button
               onClick={() => setEditmodal(false)}
-              className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition"
+              className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition cursor-pointer"
             >
               Cancel
             </button>
             <button
               onClick={handleUpdate}
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
             >
               Update
             </button>

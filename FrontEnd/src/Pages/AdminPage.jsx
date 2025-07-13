@@ -2,6 +2,7 @@ import { useState } from "react";
 import millowlogo from "../assets/Images/banner_image.jpg";
 import { CLOUDINARY_CLOUD_NAME, REACT_SERVER_URL } from "../../config/ENV";
 import axios from "axios";
+import useUserInfo from "../CustomHooks/useUserInfo";
 
 export default function AdminWithImageBg() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function AdminWithImageBg() {
   const [image, setImage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [errormessage, setErromessage] = useState("");
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = useUserInfo();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

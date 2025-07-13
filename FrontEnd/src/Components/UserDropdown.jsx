@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaRegUser, FaChevronDown } from "react-icons/fa";
+import useUserInfo from "../CustomHooks/useUserInfo";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Alerts from "./Alerts";
 
@@ -9,8 +10,8 @@ const UserDropdown = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
+  const userInfo = useUserInfo();
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const userEmail = userInfo?.email;
   const isAdmin = userInfo?.isAdmin;
 
