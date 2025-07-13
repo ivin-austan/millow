@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
 import UserDropdown from "./UserDropdown";
+import options from "../assets/realestatetypes.json";
 
 const Header = () => {
   const userInfo = localStorage.getItem("userInfo");
@@ -20,21 +21,11 @@ const Header = () => {
               </h1>
             </div>
             <nav className="hidden md:flex space-x-8 text-md font-medium text-gray-700">
-              <a href="#" className="hover:text-blue-600 transition">
-                Buy
-              </a>
-              <a href="#" className="hover:text-blue-600 transition">
-                Rent
-              </a>
-              <a href="#" className="hover:text-blue-600 transition">
-                Sell
-              </a>
-              <a href="#" className="hover:text-blue-600 transition">
-                Agent Finder
-              </a>
-              <a href="#" className="hover:text-blue-600 transition">
-                Home Loans
-              </a>
+              {options.map((option) => (
+                <Link key={option._id} to={`/realestate?type=${option.type}`}>
+                  {option.type}
+                </Link>
+              ))}
             </nav>
             <div
               className={`flex items-center space-x-4 ${userEmail ? "hidden" : ""}`}

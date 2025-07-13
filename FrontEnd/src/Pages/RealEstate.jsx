@@ -1,7 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { REACT_SERVER_URL } from "../../config/ENV";
+import Property from "../Components/Property";
+import { useSearchParams } from "react-router-dom";
 
 const RealEstate = () => {
-  return <div></div>;
+  const [properties, setProperties] = useState([]);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  const [searchParams] = useSearchParams();
+
+  const realEstateType = searchParams.get("type")?.toLowerCase();
+
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${REACT_SERVER_URL}/properties/fetchproperty`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.token}`,
+          },
+        }
+      );
+      setProperties(data.properties);
+    } catch (error) {
+      const message = error?.response?.data?.message || error.message;
+      console.log(message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  return (
+    <>
+      <Property properties={properties} type={realEstateType} />
+    </>
+  );
 };
 
 export default RealEstate;

@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Buy a home",
+    "description": "Find your place with an immersive photo experience and the most listings.",
+    "buttonText": "Browse homes",
+    "bg": "bg-blue-50",
+    "type": "Buy"
+  },
+  {
+    "title": "Rent a home",
+    "description": "We're creating a seamless online experience – from shopping to applying to paying rent.",
+    "buttonText": "Find rentals",
+    "bg": "bg-green-50",
+    "type": "Rent"
+  },
+  {
+    "title": "Sell a home",
+    "description": "No matter what path you take to sell your home, we can help you navigate a successful sale.",
+    "buttonText": "See your options",
+    "bg": "bg-yellow-50",
+    "type": "Sell"
+  }
+]

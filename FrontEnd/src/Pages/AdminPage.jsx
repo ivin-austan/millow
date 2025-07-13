@@ -192,7 +192,7 @@ export default function AdminWithImageBg() {
                   <option value="" disabled>
                     Select Property Type
                   </option>
-                  <option value="Rental">Rental</option>
+                  <option value="Rent">Rent</option>
                   <option value="Sell">Sell</option>
                   <option value="Buy">Buy</option>
                 </select>
