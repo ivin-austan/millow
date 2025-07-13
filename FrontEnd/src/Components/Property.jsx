@@ -1,53 +1,151 @@
-const Property = ({ properties, type }) => {
+import { useEffect, useState } from "react";
+import { AiTwotoneEdit } from "react-icons/ai";
+import EditModal from "./EditModal";
+import { AiFillDelete } from "react-icons/ai";
+import axios from "axios";
+import useUserInfo from "../CustomHooks/useUserInfo";
+import Alerts from "./Alerts";
+import { REACT_SERVER_URL } from "../../config/ENV";
+
+const Property = ({ properties, type, isAdmin, setUpdated }) => {
   const propertyList = Array.isArray(properties) ? properties : [];
-  console.log(propertyList);
+
+  const [editmodal, setEditmodal] = useState(false);
+  const [triggerdelete, setTriggerdelete] = useState(false);
+  const [selectedproperty, setSelectedproperty] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [errormessage, setErrormessage] = useState("");
+  const [propertyToDelete, setPropertyToDelete] = useState(null);
 
   const relevantProperties = propertyList.filter(
     (property) => property.type?.toLowerCase() === type?.toLowerCase()
   );
 
+  const userInfo = useUserInfo();
+
+  const handleEdit = (property) => {
+    setEditmodal(true);
+    setSelectedproperty(property);
+  };
+
+  const triggerDelete = (property) => {
+    setTriggerdelete(true);
+    setPropertyToDelete(property);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo?.token}`,
+        },
+      };
+      await axios.delete(
+        `${REACT_SERVER_URL}/properties/deleteproperty/${propertyToDelete._id}`,
+        config
+      );
+      setErrormessage("");
+      setShowToast(true);
+      setUpdated(true);
+      //closing the alert box immediatetly on clicking ok
+      setTriggerdelete(false);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 2500);
+    } catch (error) {
+      let message = error?.response?.data?.message;
+      console.log(error);
+
+      setShowToast(true);
+      setErrormessage(message ? message : error.message);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    }
+  };
+
   return (
-    <div className="px-6 py-10 max-w-screen-xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {relevantProperties.length > 0
-          ? relevantProperties.map((property) => (
-              <div
-                key={property._id}
-                className="rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow bg-white border border-gray-100"
-              >
-                <img
-                  className="w-full h-56 object-cover"
-                  src={property.image}
-                  alt="Property"
-                />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-semibold text-gray-800">
-                      {property.name}
-                    </h2>
-                    <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">
-                      ⭐ 4.7
-                    </span>
-                  </div>
+    <>
+      {!errormessage && showToast && (
+        <div className="fixed top-5  z-[9999] left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded shadow-lg transition-all duration-300 animate-slide-in">
+          ✅ Successfully Deleted the property!
+        </div>
+      )}
+      {triggerdelete && (
+        <Alerts
+          message="Are you sure you want to Delete the property?"
+          onCancel={() => setTriggerdelete(false)}
+          onConfirm={handleDelete}
+        />
+      )}
+      <div className="px-6 py-10 max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {relevantProperties.length > 0
+            ? relevantProperties.map((property) => (
+                <div
+                  key={property._id}
+                  className="rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow bg-white border border-gray-100"
+                >
+                  <img
+                    className="w-full h-56 object-cover"
+                    src={property.image}
+                    alt="Property"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-xl font-semibold text-gray-800">
+                        {property.name}
+                      </h2>
+                      <span>
+                        {isAdmin && (
+                          <AiTwotoneEdit
+                            onClick={() => handleEdit(property)}
+                            style={{ cursor: "pointer" }}
+                          />
+                        )}
+                      </span>
+                      <span>
+                        {isAdmin && (
+                          <AiFillDelete
+                            onClick={() => triggerDelete(property)}
+                            style={{ cursor: "pointer" }}
+                          />
+                        )}
+                      </span>
+                      <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">
+                        ⭐ 4.7
+                      </span>
+                    </div>
 
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {property.desc}
-                  </p>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      {property.desc}
+                    </p>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-green-600">
-                      {property.amount}
-                    </span>
-                    <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                      View Details
-                    </button>
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-bold text-green-600">
+                        $ {property.amount}
+                      </span>
+                      <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          : ` No properties found for ${type}`}
+              ))
+            : ` No properties found for ${type}`}
+        </div>
+        {editmodal ? (
+          <EditModal
+            selectedProperty={selectedproperty}
+            setEditmodal={setEditmodal}
+            setUpdated={setUpdated}
+          />
+        ) : (
+          ""
+        )}
       </div>
-    </div>
+    </>
   );
 };
 

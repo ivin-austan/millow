@@ -22,7 +22,7 @@ const Header = () => {
             </div>
             <nav className="hidden md:flex space-x-8 text-md font-medium text-gray-700">
               {options.map((option) => (
-                <Link key={option._id} to={`/realestate?type=${option.type}`}>
+                <Link key={option.type} to={`/realestate?type=${option.type}`}>
                   {option.type}
                 </Link>
               ))}

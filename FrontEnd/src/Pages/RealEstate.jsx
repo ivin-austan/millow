@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 const RealEstate = () => {
   const [properties, setProperties] = useState([]);
+  const [updated, setUpdated] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [searchParams] = useSearchParams();
@@ -32,10 +33,18 @@ const RealEstate = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [updated]);
+
+  console.log(updated);
+
   return (
     <>
-      <Property properties={properties} type={realEstateType} />
+      <Property
+        properties={properties}
+        type={realEstateType}
+        isAdmin={userInfo.isAdmin}
+        setUpdated={setUpdated}
+      />
     </>
   );
 };

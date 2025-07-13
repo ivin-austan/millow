@@ -7,7 +7,7 @@ import axios from "axios";
 const Login = ({ newUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errormessage, setErromessage] = useState("");
+  const [errormessage, setErrormessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [newreg, setNewReg] = useState(false);
 
@@ -30,7 +30,7 @@ const Login = ({ newUser }) => {
           config
         );
         localStorage.setItem("userInfo", JSON.stringify(data));
-        setErromessage("");
+        setErrormessage("");
         setShowToast(true);
 
         // Wait for toast to show, then navigate
@@ -40,7 +40,7 @@ const Login = ({ newUser }) => {
         }, 500);
       } catch (error) {
         let message = error?.response?.data?.message;
-        setErromessage(message ? message : error.message);
+        setErrormessage(message ? message : error.message);
       }
     } else {
       try {
@@ -57,12 +57,12 @@ const Login = ({ newUser }) => {
           config
         );
         setNewReg(true);
-        setErromessage("");
+        setErrormessage("");
         setShowToast(true);
         navigate("/login");
       } catch (error) {
         let message = error?.response?.data?.message;
-        setErromessage(message ? message : error.message);
+        setErrormessage(message ? message : error.message);
       }
     }
   };
