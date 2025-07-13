@@ -32,13 +32,14 @@ const createProperty = async (req, res) => {
 const updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, type, desc, amount } = req.body;
+    const { name, type, desc, amount, image } = req.body;
 
     const updatedFields = {};
     if (type !== undefined) updatedFields.type = type;
     if (desc !== undefined) updatedFields.desc = desc;
     if (amount !== undefined) updatedFields.amount = amount;
     if (name !== undefined) updatedFields.name = name;
+    if (image !== undefined) updatedFields.image = image;
 
     const validProperty = await Property.findById(id);
     if (!validProperty) {
