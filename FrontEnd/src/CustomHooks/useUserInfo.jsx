@@ -1,18 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function useUserInfo() {
-  const [userInfo, setUserInfo] = useState(null);
+  const stored = localStorage.getItem("userInfo");
+  const initialUserInfo = stored ? JSON.parse(stored) : null;
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("userInfo");
-      if (stored) {
-        setUserInfo(JSON.parse(stored));
-      }
-    } catch (e) {
-      console.error("Failed to parse userInfo from localStorage:", e);
-    }
-  }, []);
+  const [userInfo] = useState(initialUserInfo);
 
   return userInfo;
 }
