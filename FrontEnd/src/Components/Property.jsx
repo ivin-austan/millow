@@ -97,25 +97,24 @@ const Property = ({ properties, type, isAdmin, setUpdated }) => {
                       <h2 className="text-xl font-semibold text-gray-800">
                         {property.name}
                       </h2>
-                      <span>
+                      <div className="flex items-center space-x-6">
                         {isAdmin && (
-                          <AiTwotoneEdit
-                            onClick={() => handleEdit(property)}
-                            style={{ cursor: "pointer" }}
-                          />
+                          <>
+                            <AiTwotoneEdit
+                              onClick={() => handleEdit(property)}
+                              className="cursor-pointer text-blue-600 hover:text-blue-800 space-x-1"
+                            />
+                            <AiFillDelete
+                              onClick={() => triggerDelete(property)}
+                              className="cursor-pointer text-red-600 hover:text-red-800"
+                            />
+                          </>
                         )}
-                      </span>
-                      <span>
-                        {isAdmin && (
-                          <AiFillDelete
-                            onClick={() => triggerDelete(property)}
-                            style={{ cursor: "pointer" }}
-                          />
-                        )}
-                      </span>
-                      <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">
-                        ⭐ 4.7
-                      </span>
+
+                        <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">
+                          ⭐ 4.7
+                        </span>
+                      </div>
                     </div>
 
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3">
@@ -124,7 +123,7 @@ const Property = ({ properties, type, isAdmin, setUpdated }) => {
 
                     <div className="flex items-center justify-between">
                       <span className="text-lg font-bold text-green-600">
-                        $ {property.amount}
+                        $ {Number(property.amount).toLocaleString()}
                       </span>
                       <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                         View Details

@@ -54,6 +54,7 @@ const EditModal = ({ selectedProperty, setEditmodal, setUpdated }) => {
         name: selectedProperty.name || "",
         amount: selectedProperty.amount || "",
         desc: selectedProperty.desc || "",
+        image: selectedProperty.image || "",
       }));
     }
   }, [selectedProperty]);

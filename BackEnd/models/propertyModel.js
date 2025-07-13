@@ -8,7 +8,7 @@ const propertySchema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      required: false,
       default:
         "https://res.cloudinary.com/dxhpxvyih/image/upload/v1752328026/aeuvjxttjkzr0jjdzxmr.jpg",
     },
