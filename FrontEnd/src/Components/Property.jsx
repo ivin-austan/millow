@@ -6,6 +6,7 @@ import axios from "axios";
 import useUserInfo from "../CustomHooks/useUserInfo";
 import Alerts from "./Alerts";
 import { REACT_SERVER_URL } from "../../config/ENV";
+import { Link } from "react-router-dom";
 
 const Property = ({ properties, type, isAdmin, setUpdated, loading }) => {
   const propertyList = Array.isArray(properties) ? properties : [];
@@ -147,7 +148,12 @@ const Property = ({ properties, type, isAdmin, setUpdated, loading }) => {
                           $ {Number(property.amount).toLocaleString()}
                         </span>
                         <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                          View Details
+                          <Link
+                            to="/propertyview"
+                            state={{ property: property }}
+                          >
+                            View Details
+                          </Link>
                         </button>
                       </div>
                     </div>

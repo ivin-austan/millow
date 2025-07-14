@@ -4,7 +4,7 @@ import useUserInfo from "../CustomHooks/useUserInfo";
 const PrivateRouteWrapper = ({ children, requireAdmin = false }) => {
   const userInfo = useUserInfo();
 
-  if (requireAdmin && !userInfo.isAdmin) {
+  if (requireAdmin && !userInfo?.isAdmin) {
     return <Navigate to="/unauthorized" />;
   }
   return children;

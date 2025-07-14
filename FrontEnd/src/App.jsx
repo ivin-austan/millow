@@ -8,6 +8,7 @@ import PrivateRouteWrapper from "./Components/PrivateRouteWrapper";
 import AdminDashboard from "./Pages/AdminPage";
 import { Navigate } from "react-router-dom";
 import Unauthorized from "./Pages/UnAuthorised";
+import PropertyViewPage from "./Pages/PropertyViewPage";
 
 const App = () => {
   const location = useLocation();
@@ -23,6 +24,14 @@ const App = () => {
           element={
             <PrivateRouteWrapper>
               <RealEstate />
+            </PrivateRouteWrapper>
+          }
+        />
+        <Route
+          path="/propertyview"
+          element={
+            <PrivateRouteWrapper>
+              <PropertyViewPage />
             </PrivateRouteWrapper>
           }
         />
