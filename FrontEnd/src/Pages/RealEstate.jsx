@@ -9,6 +9,7 @@ const RealEstate = () => {
   const [properties, setProperties] = useState([]);
   const [updated, setUpdated] = useState(false);
   const userInfo = useUserInfo();
+  const [loading, setLoading] = useState(true);
 
   const [searchParams] = useSearchParams();
 
@@ -29,6 +30,8 @@ const RealEstate = () => {
     } catch (error) {
       const message = error?.response?.data?.message || error.message;
       console.log(message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,6 +48,7 @@ const RealEstate = () => {
         type={realEstateType}
         isAdmin={userInfo.isAdmin}
         setUpdated={setUpdated}
+        loading={loading}
       />
     </>
   );
