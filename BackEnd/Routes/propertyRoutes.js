@@ -5,7 +5,7 @@ const {
   deleteProperty,
   showProperty,
   updateProperty,
-} = require("../controllers/propertyController");
+} = require("../Controllers/propertyController");
 const { default: verifyToken } = require("../utils/jwtTokenValidation");
 
 const router = express.Router();

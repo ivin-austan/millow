@@ -1,5 +1,5 @@
-const Property = require("../models/propertyModel.js");
-const generateToken = require("../utils/generateToken");
+const Property = require("../Models/propertyModel.js");
+const generateToken = require("../utils/generateToken.js");
 
 const createProperty = async (req, res) => {
   const { name, image, type, amount, picture, desc } = req.body;
