@@ -48,20 +48,23 @@ This project features a **⚛️ React frontend** styled with **🎨 Tailwind CS
    ```
 3. Run in Development Mode:
 
-   ```bash
-   npm start
-   ```
-   To start both frontend and backend simultaneously using concurrently:
-   ```bash
-   npm start
-   ```
+   - To start both **frontend** and **backend** simultaneously using `concurrently`:
 
-   Alternatively, you can run them manually:
+     ```bash
+     npm start
+     ```
 
-   # Terminal 1 - Backend
-   cd backend
-   npm run dev
+   - Alternatively, you can run them manually in separate terminals:
 
-   # Terminal 2 - Frontend
-   cd frontend
-   npm run dev
+     Terminal 1 – Backend
+     ```bash
+     cd backend
+     npm run dev
+     ```
+
+     Terminal 2 – Frontend
+     ```bash
+     cd frontend
+     npm run dev
+     ```
+
