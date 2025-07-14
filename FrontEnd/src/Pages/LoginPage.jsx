@@ -11,7 +11,7 @@ const LoginPage = () => {
         <img
           src={loginimage}
           alt="Login"
-          className="object-cover w-full h-full"
+          className="hidden md:block object-cover w-full h-full"
         />
       </div>
       <div className="w-2/5 flex items-center justify-center">
