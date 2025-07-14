@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import millowlogo from "../assets/Images/millow_logo.jpg";
 import UserDropdown from "./UserDropdown";
 import options from "../assets/realestatetypes.json";
@@ -6,6 +6,8 @@ import useUserInfo from "../CustomHooks/useUserInfo";
 
 const Header = () => {
   const userInfo = useUserInfo();
+  const [searchParams] = useSearchParams();
+  const getType = searchParams.get("type");
 
   return (
     <>
@@ -20,11 +22,20 @@ const Header = () => {
               </h1>
             </div>
             <nav className="hidden md:flex space-x-8 text-md font-medium text-gray-700">
-              {options.map((option) => (
-                <Link key={option.type} to={`/realestate?type=${option.type}`}>
-                  {option.type}
-                </Link>
-              ))}
+              {options.map((option) => {
+                const isActive = option.type === getType;
+                return (
+                  <Link
+                    key={option.type}
+                    to={`/realestate?type=${option.type}`}
+                    className={
+                      isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+                    }
+                  >
+                    {option.type}
+                  </Link>
+                );
+              })}
             </nav>
             <div
               className={`flex items-center space-x-4 ${userInfo?.email ? "hidden" : ""}`}

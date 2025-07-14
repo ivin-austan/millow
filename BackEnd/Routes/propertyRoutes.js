@@ -13,5 +13,5 @@ const router = express.Router();
 router.post("/addproperty", verifyToken, createProperty);
 router.post("/updateproperty/:id", verifyToken, updateProperty);
 router.delete("/deleteproperty/:id", verifyToken, deleteProperty);
-router.get("/fetchproperty", verifyToken, showProperty);
+router.get("/fetchproperty", showProperty);
 module.exports = router;

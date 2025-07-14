@@ -22,7 +22,6 @@ const RealEstate = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.token}`,
           },
         }
       );
@@ -46,7 +45,7 @@ const RealEstate = () => {
       <Property
         properties={properties}
         type={realEstateType}
-        isAdmin={userInfo.isAdmin}
+        isAdmin={userInfo?.isAdmin}
         setUpdated={setUpdated}
         loading={loading}
       />
