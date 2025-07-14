@@ -148,12 +148,16 @@ const Property = ({ properties, type, isAdmin, setUpdated, loading }) => {
                           $ {Number(property.amount).toLocaleString()}
                         </span>
                         <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                          <Link
-                            to="/propertyview"
-                            state={{ property: property }}
-                          >
-                            View Details
-                          </Link>
+                          {userInfo ? (
+                            <Link
+                              to="/propertyview"
+                              state={{ property: property }}
+                            >
+                              View Details
+                            </Link>
+                          ) : (
+                            <Link to="/login">View Details</Link>
+                          )}
                         </button>
                       </div>
                     </div>
