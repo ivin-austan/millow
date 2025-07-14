@@ -5,7 +5,7 @@ const cors = require("cors");
 const userRoutes = require("./Routes/userRoutes");
 const propertyRoutes = require("./Routes/propertyRoutes");
 
-const { notFound, errorHandler } = require("./Middlewares/errorMiddleware");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 
