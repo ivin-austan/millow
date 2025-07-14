@@ -1,4 +1,4 @@
-const Property = require("../Models/propertyModel.js");
+const Property = require("../models/propertyModel.js");
 const generateToken = require("../utils/generateToken.js");
 
 const createProperty = async (req, res) => {
