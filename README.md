@@ -7,7 +7,7 @@ This project features a **⚛️ React frontend** styled with **🎨 Tailwind CS
 
 ## 🚀 Features
 
-- 🔍 Browse properties for sale or rent
+- 🔍 Browse properties for Buy, sale or rent
 - 🏠 Post new property listings
 - ✏️ Manage property details
 - 🛠️ Admin dashboard for manage listings
@@ -40,3 +40,28 @@ This project features a **⚛️ React frontend** styled with **🎨 Tailwind CS
    git clone https://github.com/ivin-austan/millow.git
    cd millow
    ```
+   
+2. Install Dependencies:
+
+   ```bash
+   npm install
+   ```
+3. Run in Development Mode:
+
+   ```bash
+   npm start
+   ```
+   To start both frontend and backend simultaneously using concurrently:
+   ```bash
+   npm start
+   ```
+
+   Alternatively, you can run them manually:
+
+   # Terminal 1 - Backend
+   cd backend
+   npm run dev
+
+   # Terminal 2 - Frontend
+   cd frontend
+   npm run dev
